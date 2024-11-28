@@ -3,27 +3,21 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    const [user, setUser] = useState(null); // State for user data
-    const [menuOpen, setMenuOpen] = useState(false); // State for the dropdown menu
-    const [taskMenuOpen, setTaskMenuOpen] = useState(false); // Task dropdown menu state
-    const [projectMenuOpen, setProjectMenuOpen] = useState(false); // Project dropdown menu state
-    const [loading, setLoading] = useState(true); // Loading state for API request
+    const [user, setUser] = useState(null);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [teamMenuOpen, setTeamMenuOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
-    // Check if user is logged in by checking localStorage
     useEffect(() => {
-        const token = localStorage.getItem('authToken'); // Переконайтесь, що отримуєте authToken
+        const token = localStorage.getItem('authToken');
         if (token) {
             fetch('/api/user/current', {
-                headers: {
-                    'Authorization': `Bearer ${token}` // Підтримка authToken
-                }
+                headers: { 'Authorization': `Bearer ${token}` }
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data) {
-                        setUser(data); // Отримання даних користувача
-                    }
+                    if (data) setUser(data);
                     setLoading(false);
                 })
                 .catch(error => {
@@ -34,7 +28,18 @@ const Header = () => {
             setLoading(false);
         }
     }, []);
- // Runs once on component mount
+
+    const handleLogout = () => {
+        fetch('/api/logout', { method: 'POST' })
+            .then(() => {
+                setUser(null);
+                localStorage.removeItem('authToken');
+                navigate('/login');
+            })
+            .catch(error => {
+                console.error("Error logging out:", error);
+            });
+    };
 
     const getInitials = (name) => {
         return name
@@ -43,19 +48,6 @@ const Header = () => {
             .join('');
     };
 
-    const handleLogout = () => {
-        fetch('/api/logout', { method: 'POST' })
-            .then(() => {
-                setUser(null); // Clear the user state
-                localStorage.removeItem('authToken'); // Remove token from localStorage
-                navigate('/login'); // Redirect to login page
-            })
-            .catch((error) => {
-                console.error("Error logging out:", error);
-            });
-    };
-
-    // Display a loading message if the data is being fetched
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -63,39 +55,30 @@ const Header = () => {
     return (
         <header className="header">
             <div className="menu">
-                <button onClick={() => setTaskMenuOpen(!taskMenuOpen)}>
-                    Мої завдання
-                </button>
-                {taskMenuOpen && (
-                    <div className="dropdown-menu">
-                        <ul>
-                            <li>Всі завдання</li>
-                            <li>Нещодавні</li>
-                            <li>Проекти</li>
-                        </ul>
-                    </div>
-                )}
-                <button onClick={() => setProjectMenuOpen(!projectMenuOpen)}>
-                    Мої проекти
-                </button>
-                {projectMenuOpen && (
-                    <div className="dropdown-menu">
-                        <ul>
-                            <li>Мої проекти</li>
-                            <li>Створити новий проект</li>
-                            <li><a href="/projects">Подивитися всі проекти</a></li>
-                        </ul>
-                    </div>
-                )}
-                <button>Дашборд</button>
-                <button>Мої команди</button>
-                <button>Плани</button>
+                <button onClick={() => navigate('/dashboard')}>Dashboard</button>
+                <div className="dropdown-container">
+                    <button onClick={() => setTeamMenuOpen(!teamMenuOpen)}>
+                        Команди
+                    </button>
+                    {teamMenuOpen && (
+                        <div className="dropdown-menu">
+                            <ul>
+                                {user?.teams?.length ? (
+                                    user.teams.map((team) => <li key={team.id}>{team.name}</li>)
+                                ) : (
+                                    <li className="empty">У вас немає команд</li>
+                                )}
+                            </ul>
+                        </div>
+                    )}
+                </div>
+                <button onClick={() => navigate('/about')}>Про нас</button>
+                <button onClick={() => navigate('/projects/new')}>Створити новий проект</button>
             </div>
             <div className="logo">
                 <a href="/">SigmaSoft</a>
             </div>
             <div className="user-panel">
-                <input type="text" placeholder="Пошук по задачах..." />
                 {user ? (
                     <div className="user-menu">
                         <div
@@ -126,7 +109,6 @@ const Header = () => {
                                 </div>
                                 <ul>
                                     <li><a href="/profile">Особистий кабінет</a></li>
-                                    <li><a href="/messages">Повідомлення</a></li>
                                     <li><a href="/settings">Налаштування</a></li>
                                     <li onClick={handleLogout}>Вийти з акаунту</li>
                                 </ul>

@@ -64,15 +64,16 @@
 /* Випадаюче меню */
 .dropdown-menu {
     position: absolute;
-    top: 60px;
-    right: 10px;
-    background: #222;
+    top: 100%; /* Відразу під кнопкою */
+    left: 0;
+    background-color: #222; /* Тло випадаючого меню */
     color: white;
     border: 1px solid #444;
     border-radius: 8px;
-    width: 250px;
+    width: 200px; /* Ширина меню */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     z-index: 1001;
+    padding: 10px 0; /* Внутрішні відступи */
 }
 
 .profile-header {
@@ -89,6 +90,14 @@
     border-radius: 50%;
     background-color: #555;
 }
+.dropdown-container {
+    position: relative; /* Для позиціонування випадаючого меню відносно кнопки */
+}
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
 .dropdown-menu ul {
     list-style: none;
@@ -96,21 +105,17 @@
     margin: 0;
 }
 
+/* Елементи випадаючого меню */
 .dropdown-menu li {
-    padding: 12px;
+    padding: 10px 15px; /* Відступи для клікабельності */
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s; /* Анімація при наведенні */
 }
 
+/* Hover-ефект для елементів меню */
 .dropdown-menu li:hover {
     background-color: #444;
 }
-
-.dropdown-menu li a {
-    color: white;
-    text-decoration: none;
-}
-
 .user-panel a button {
     padding: 12px 20px; /* Відступи всередині кнопки */
     background-color: #646cff;
@@ -121,7 +126,18 @@
     margin-right: 20px; /* Відступ між кнопками */
     transition: background-color 0.3s;
 }
-
+/* Посилання у випадаючому меню */
+.dropdown-menu li a {
+    color: white;
+    text-decoration: none; /* Вимкнення підкреслення */
+}
+/* Порожній список у випадаючому меню */
+.dropdown-menu .empty {
+    text-align: center;
+    padding: 10px 15px;
+    color: #aaa; /* Світліший текст для порожнього списку */
+    font-style: italic;
+}
 /* Зміна кольору кнопки при наведенні */
 .user-panel a button:hover {
     background-color: #535bf2;

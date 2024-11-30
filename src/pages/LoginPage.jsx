@@ -21,7 +21,8 @@ const LoginPage = () => {
         try {
             const response = await loginUser(formData.email, formData.password);
             setMessage("Login successful! Redirecting...");
-            localStorage.setItem("authToken", response.token); // Змінено з "token" на "authToken"
+            localStorage.setItem("token", response.token);
+            console.log("Token saved:", localStorage.getItem("token")); // Додатковий лог// Змінено з "token" на "authToken"
             setTimeout(() => {
                 navigate("/dashboard");
             }, 2000);

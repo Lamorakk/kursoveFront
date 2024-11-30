@@ -1,0 +1,66 @@
+/* Основні стилі для домашньої сторінки */
+.home-container {
+    text-align: center;
+    margin-top: 100px; /* Відступ від верхнього краю */
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    padding: 50px 20px;
+    min-height: 100vh; /* Задаємо висоту на всю сторінку */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-container h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.home-container p {
+    font-size: 18px;
+    color: #bbb;
+    margin-bottom: 40px;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.cta-button {
+    background-color: #646cff;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 250px;
+}
+
+.cta-button:hover {
+    background-color: #4040d0;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.home-footer {
+    margin-top: 40px;
+    font-size: 16px;
+    color: #888;
+}
+
+.home-footer p {
+    margin-top: 20px;
+}

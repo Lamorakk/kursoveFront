@@ -9,6 +9,7 @@ import MessagesPage from './pages/MessagesPage';
 import SettingsPage from './pages/SettingsPage';
 import ResetPasswordPage from "./pages/ResetPasswordPage.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
 
 const App = () => {
     return (
@@ -25,6 +26,8 @@ const App = () => {
                         <Route path="/messages" element={<MessagesPage />} />
                         <Route path="/settings" element={<SettingsPage />} />
                         <Route path="/dashboard" element={<DashboardPage />} />
+                        <Route path="/about" element={<AboutPage />} />
+
                     </Routes>
                 </main>
             </React.Suspense>

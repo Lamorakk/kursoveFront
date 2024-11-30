@@ -1,8 +1,11 @@
 import { useState } from "react";
-import "./CSS/RegistrationPage.css";
+import { useNavigate } from "react-router-dom";
+import { useContext } from 'react'; // Import useContext
+import { AuthContext } from '../context/AuthContext'; // Import AuthContext
 import { registerUser } from "../services/api";
 
 const RegistrationPage = () => {
+    const { login } = useContext(AuthContext); // Access the login function from context
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -11,6 +14,7 @@ const RegistrationPage = () => {
     });
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,11 +32,15 @@ const RegistrationPage = () => {
         try {
             await registerUser(formData.email, formData.password);
             setMessage("Registration successful! Redirecting...");
-            setTimeout(() => (window.location.href = "/login"), 2000);
+            setTimeout(() => {
+                login({ name: formData.name, email: formData.email }); // Call the login from context
+                navigate("/dashboard");
+            }, 2000);
         } catch (err) {
             setError("Registration failed: " + err.message);
         }
     };
+
 
     return (
         <div className="container">
@@ -101,3 +109,4 @@ const RegistrationPage = () => {
 };
 
 export default RegistrationPage;
+

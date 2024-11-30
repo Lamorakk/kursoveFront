@@ -1,0 +1,100 @@
+.dashboard-container {
+    display: flex;
+    justify-content: flex-start; /* Вирівнюємо елементи зліва */
+    height: 100vh; /* Повна висота вікна */
+    width: 100%; /* Повна ширина вікна */
+}
+
+.left-menu {
+    position: fixed; /* Закріплюємо меню зліва */
+    top: 0;
+    left: 0;
+    width: 300px; /* Фіксована ширина */
+    height: 100%; /* Розтягнення на всю висоту */
+    padding: 20px;
+    background-color: rgba(26, 26, 26, 0.9); /* Напівпрозорий фон */
+    border-right: 2px solid #646cff; /* Вертикальний розділювач */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column; /* Розтягування списку проектів */
+    justify-content: flex-start;
+    text-align: left;
+    margin-top: 80px;
+}
+
+.right-dashboard {
+    margin-left: 300px; /* Відступ для врахування ширини лівого меню */
+    flex: 1; /* Заповнення решти простору */
+    padding: 20px;
+    background-color: #121212;
+    overflow-y: auto;
+    height: 100vh; /* Повна висота вікна */
+}
+
+
+/* Заголовок в меню */
+.left-menu h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Список проектів */
+.project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Розтягнення списку */
+    overflow-y: auto; /* Прокрутка, якщо елементів багато */
+}
+
+.project-item {
+    background-color: rgba(50, 50, 50, 0.8);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.project-item h3 {
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.project-item p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+/* Повідомлення про відсутність проектів */
+.no-projects {
+    color: #888;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+.right-dashboard h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.stat-section {
+    background-color: rgba(50, 50, 50, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.stat-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.stat-section p {
+    font-size: 16px;
+    margin: 5px 0;
+}/* Загальний контейнер для Dashboard */

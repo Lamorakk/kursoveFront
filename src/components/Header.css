@@ -61,19 +61,17 @@
 }
 
 
-/* Випадаюче меню */
 .dropdown-menu {
     position: absolute;
-    top: 100%; /* Відразу під кнопкою */
-    left: 0;
-    background-color: #222; /* Тло випадаючого меню */
+    top: 60px; /* Відступ під аватаром */
+    right: 0;
+    background-color: #222;
     color: white;
-    border: 1px solid #444;
     border-radius: 8px;
-    width: 200px; /* Ширина меню */
+    width: 200px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 1001;
-    padding: 10px 0; /* Внутрішні відступи */
+    padding: 10px 0;
+    z-index: 1000;
 }
 
 .profile-header {
@@ -99,22 +97,15 @@
     margin: 0;
 }
 
-.dropdown-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
 /* Елементи випадаючого меню */
 .dropdown-menu li {
-    padding: 10px 15px; /* Відступи для клікабельності */
+    padding: 12px 16px;
     cursor: pointer;
-    transition: background-color 0.3s; /* Анімація при наведенні */
+    transition: background-color 0.3s;
 }
 
-/* Hover-ефект для елементів меню */
 .dropdown-menu li:hover {
-    background-color: #444;
+    background-color: #333;
 }
 .user-panel a button {
     padding: 12px 20px; /* Відступи всередині кнопки */
@@ -147,17 +138,23 @@
     display: inline-block;
     width: 40px;
     height: 40px;
-    border-radius: 50%; /* Робимо кругле зображення */
-    overflow: hidden;
-    background-color: #ccc; /* Для випадку без аватарки */
+    border-radius: 50%;
+    background-color: #646cff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
     cursor: pointer;
+    overflow: hidden;
     position: relative;
 }
 
+/* Зображення аватару */
 .user-avatar img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Підлаштовуємо зображення під круглу форму */
+    object-fit: cover;
 }
 
 .user-avatar .initials {
